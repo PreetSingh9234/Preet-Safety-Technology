@@ -1,179 +1,90 @@
-# ==========================================================
-# PREET SAFETY TECHNOLOGY
-# AI REGULATORY COMPLIANCE INTELLIGENCE AGENT
-# ==========================================================
-
-
 from datetime import datetime
 
-
-
 COMPLIANCE_DATABASE = {
-
-
-"gas leakage":
-
-{
-"standard":
-"OISD Safety Guidelines",
-
-"risk":
-"High",
-
-"recommendation":[
-
-"Verify gas detection system",
-
-"Check emergency isolation valves",
-
-"Review ventilation status",
-
-"Conduct hazard assessment"
-
-]
-
-},
-
-
-
-"confined space":
-
-{
-"standard":
-"Factory Act Safety Rules",
-
-"risk":
-"Critical",
-
-"recommendation":[
-
-"Verify permit-to-work",
-
-"Check gas testing certificate",
-
-"Assign standby supervisor",
-
-"Maintain rescue equipment"
-
-]
-
-},
-
-
-
-"machine":
-
-{
-"standard":
-"DGMS Equipment Safety",
-
-"risk":
-"Medium",
-
-"recommendation":[
-
-"Perform preventive maintenance",
-
-"Check vibration level",
-
-"Review machine history"
-
-]
-
-},
-
-
-
-"ppe":
-
-{
-"standard":
-"Industrial Safety Compliance",
-
-"risk":
-"Medium",
-
-"recommendation":[
-
-"Verify PPE availability",
-
-"Conduct worker safety training"
-
-]
-
+    "gas": {
+        "hazard": "Industrial Gas Leakage",
+        "standards": [
+            "OISD Process Safety Standard",
+            "Factory Act 1948"
+        ],
+        "risk": "CRITICAL",
+        "score": 92,
+        "actions": [
+            "Verify gas detection system",
+            "Check emergency isolation valves",
+            "Review ventilation status",
+            "Perform hazard assessment"
+        ]
+    },
+    "temperature": {
+        "hazard": "Extreme Temperature Risk",
+        "standards": [
+            "Factory Act Thermal Safety Rules"
+        ],
+        "risk": "HIGH",
+        "score": 88,
+        "actions": [
+            "Inspect thermal control system",
+            "Reduce equipment load",
+            "Monitor temperature sensors"
+        ]
+    },
+    "ppe": {
+        "hazard": "PPE Compliance Failure",
+        "standards": [
+            "PPE Safety Regulations",
+            "Factory Act Worker Protection"
+        ],
+        "risk": "MEDIUM",
+        "score": 75,
+        "actions": [
+            "Verify PPE availability",
+            "Stop unsafe entry",
+            "Conduct worker briefing"
+        ]
+    },
+    "machine": {
+        "hazard": "Equipment Safety Risk",
+        "standards": [
+            "DGMS Equipment Safety Guidelines"
+        ],
+        "risk": "HIGH",
+        "score": 82,
+        "actions": [
+            "Perform preventive maintenance",
+            "Review equipment history",
+            "Inspect vibration trends"
+        ]
+    }
 }
-
-}
-
-
-
-
 
 def compliance_analysis(hazard):
-
-
     hazard = hazard.lower()
 
-
     result = {
-
-
-    "Detected Hazard":
-
-    hazard,
-
-
-    "Compliance Standard":
-
-    "General Safety Practice",
-
-
-    "Risk Category":
-
-    "Low",
-
-
-    "AI Recommendations":
-
-    [],
-
-
-    "Generated":
-
-    datetime.now().strftime("%H:%M:%S")
-
-
+        "Detected Hazard": hazard,
+        "Compliance Standards": [],
+        "Risk Category": "LOW",
+        "Compliance Score": 100,
+        "AI Recommendations": [],
+        "Corrective Action": "No deviation detected",
+        "Generated": datetime.now().strftime("%H:%M:%S")
     }
 
-
-
-    for key,value in COMPLIANCE_DATABASE.items():
-
-
+    for key, value in COMPLIANCE_DATABASE.items():
         if key in hazard:
-
-
-            result["Compliance Standard"] = value["standard"]
-
+            result["Detected Hazard"] = value["hazard"]
+            result["Compliance Standards"] = value["standards"]
             result["Risk Category"] = value["risk"]
-
-            result["AI Recommendations"] = value["recommendation"]
-
+            result["Compliance Score"] = value["score"]
+            result["AI Recommendations"] = value["actions"]
+            result["Corrective Action"] = "Immediate corrective workflow initiated"
             break
 
-
-
     if not result["AI Recommendations"]:
-
-
-        result["AI Recommendations"]=[
-
-        "Continue monitoring",
-
-        "Perform safety inspection"
-
+        result["AI Recommendations"] = [
+            "Continue monitoring",
+            "Perform periodic safety audit"
         ]
-
-
 
     return result

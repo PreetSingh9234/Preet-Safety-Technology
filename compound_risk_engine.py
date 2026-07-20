@@ -1,540 +1,145 @@
-# ==========================================================
-# PREET SAFETY TECHNOLOGY
-# ENTERPRISE COMPOUND RISK INTELLIGENCE ENGINE
-# Version 2.0
-# ==========================================================
-
-
 from datetime import datetime
 import random
 
-
-
-# ==========================================================
-# INDUSTRIAL SAFETY WEIGHTS
-# ==========================================================
-
-
-RISK_WEIGHTS = {
-
-
-    "Gas Hazard":30,
-
-    "Temperature Hazard":20,
-
-    "Maintenance Conflict":20,
-
-    "Permit Conflict":15,
-
-    "Worker Exposure":10,
-
-    "Shift Risk":5
-
-
+HAZARD_ZONES = {
+    "Chemical Unit": 30,
+    "Gas Plant": 25,
+    "Furnace Area": 20,
+    "Maintenance Area": 15,
+    "Storage Area": 10,
+    "Assembly Area": 5,
+    "Unknown": 0
 }
 
-
-
-
-
-# ==========================================================
-# GAS INTELLIGENCE
-# ==========================================================
-
-
 def analyze_gas(sensor):
-
-
-    risk=0
-
-    reason=[]
-
-
-    gas=sensor["Gas_Level"]
-
-
-
-    if gas>=120:
-
-
-        risk=30
-
-
-        reason.append(
-
-            "☣ Critical gas concentration detected"
-
-        )
-
-
-    elif gas>=80:
-
-
-        risk=20
-
-
-        reason.append(
-
-            "⚠ Abnormal gas accumulation detected"
-
-        )
-
-
-    else:
-
-
-        reason.append(
-
-            "✅ Gas level normal"
-
-        )
-
-
-
-    return risk,reason
-
-
-
-
-
-# ==========================================================
-# TEMPERATURE INTELLIGENCE
-# ==========================================================
-
-
+    gas = sensor.get("Gas_Level", 0)
+    if gas >= 120:
+        return 30, ["☣ Critical gas concentration detected"]
+    elif gas >= 80:
+        return 20, ["⚠ Abnormal gas accumulation detected"]
+    return 0, ["✅ Gas parameter normal"]
 
 def analyze_temperature(sensor):
-
-
-    temp=sensor["Temperature"]
-
-
-    risk=0
-
-    reason=[]
-
-
-
-    if temp>=85:
-
-
-        risk=20
-
-
-        reason.append(
-
-            "🔥 Extreme temperature condition"
-
-        )
-
-
-    elif temp>=70:
-
-
-        risk=10
-
-
-        reason.append(
-
-            "🌡 Temperature above safe range"
-
-        )
-
-
-    else:
-
-
-        reason.append(
-
-            "✅ Temperature normal"
-
-        )
-
-
-    return risk,reason
-
-
-
-
-
-# ==========================================================
-# MAINTENANCE RISK
-# ==========================================================
-
+    temp = sensor.get("Temperature", 0)
+    if temp >= 85:
+        return 20, ["🔥 Extreme temperature condition"]
+    elif temp >= 70:
+        return 10, ["🌡 Temperature above safe limit"]
+    return 0, ["✅ Temperature normal"]
 
 def analyze_maintenance(status):
-
-
-    if status=="ACTIVE":
-
-
-        return (
-
-            20,
-
-            [
-
-            "🛠 Active maintenance operation detected"
-
-            ]
-
-        )
-
-
-    return (
-
-        0,
-
-        [
-
-        "✅ No maintenance conflict"
-
-        ]
-
-    )
-
-
-
-
-
-# ==========================================================
-# PERMIT INTELLIGENCE
-# ==========================================================
-
-
-
-def analyze_permit(permit):
-
-
-    if permit=="CONFLICT":
-
-
-        return (
-
-            15,
-
-            [
-
-            "🚧 Permit conflict detected"
-
-            ]
-
-        )
-
-
-
-    return (
-
-        0,
-
-        [
-
-        "✅ Permit status normal"
-
-        ]
-
-    )
-
-
-
-
-
-# ==========================================================
-# WORKER EXPOSURE ANALYSIS
-# ==========================================================
-
-
-def analyze_worker_exposure(sensor):
-
-
-    fatigue=sensor["Worker_Fatigue"]
-
-
-    if fatigue>=85:
-
-
-        return (
-
-            10,
-
-            [
-
-            "😴 High fatigue worker exposure"
-
-            ]
-
-        )
-
-
-    elif fatigue>=70:
-
-
-        return (
-
-            5,
-
-            [
-
-            "⚠ Worker fatigue increasing"
-
-            ]
-
-        )
-
-
-    return (
-
-        0,
-
-        [
-
-        "✅ Worker condition normal"
-
-        ]
-
-    )
-
-
-
-
-
-# ==========================================================
-# SHIFT CHANGE INTELLIGENCE
-# ==========================================================
-
+    if status == "ACTIVE":
+        return 20, ["🛠 Active maintenance operation detected"]
+    return 0, ["✅ No maintenance conflict"]
+
+def analyze_permit(status):
+    if status == "CONFLICT":
+        return 20, ["🚧 Dangerous permit conflict detected"]
+    return 0, ["✅ Permit status valid"]
+
+def analyze_worker(sensor):
+    fatigue = sensor.get("Worker_Fatigue", 0)
+    if fatigue >= 85:
+        return 10, ["😴 Critical worker fatigue detected"]
+    elif fatigue >= 70:
+        return 5, ["⚠ Increasing worker fatigue"]
+    return 0, ["✅ Worker condition normal"]
+
+def analyze_zone(sensor):
+    zone = sensor.get("Zone", "Unknown")
+    risk = HAZARD_ZONES.get(zone, 0)
+    if risk > 0:
+        return risk, [f"📍 Worker located in {zone} hazard zone"]
+    return 0, ["📍 Normal operation zone"]
+
+def analyze_equipment(status):
+    if status == "FAILURE":
+        return 25, ["⚙ Critical equipment failure detected"]
+    return 0, ["✅ Equipment operating normally"]
 
 def analyze_shift():
+    hour = datetime.now().hour
+    if hour in range(6, 8) or hour in range(18, 20):
+        return 5, ["🔄 Shift changeover risk detected"]
+    return 0, ["✅ Normal shift period"]
 
+def detect_compound_patterns(sensor, maintenance, permit):
+    patterns = []
+    gas = sensor.get("Gas_Level", 0)
+    zone = sensor.get("Zone", "Unknown")
 
-    current=datetime.now().hour
+    if gas >= 80 and maintenance == "ACTIVE":
+        patterns.append("🔥 Gas accumulation + Maintenance activity combination detected")
+    if gas >= 80 and permit == "CONFLICT":
+        patterns.append("🚨 Hazardous gas + Permit conflict detected")
+    if zone == "Chemical Unit" and gas >= 80:
+        patterns.append("☣ Chemical zone exposure risk detected")
+    
+    return patterns
 
+def predict_incident(score):
+    if score >= 85:
+        return ("CRITICAL", "Incident probability high within 5-15 minutes", 95)
+    elif score >= 60:
+        return ("HIGH", "Potential incident escalation within 15-45 minutes", 80)
+    elif score >= 40:
+        return ("WARNING", "Continuous monitoring required", 60)
+    
+    return ("SAFE", "No immediate threat detected", 10)
 
+def calculate_compound_risk(sensor, maintenance_status="NORMAL", permit_status="VALID", equipment_status="NORMAL"):
+    score = 0
+    reasons = []
 
-    if current in range(6,8) or current in range(18,20):
-
-
-        return (
-
-            5,
-
-            [
-
-            "🔄 Shift transition risk detected"
-
-            ]
-
-        )
-
-
-
-    return (
-
-        0,
-
-        [
-
-        "✅ Normal operation period"
-
-        ]
-
-    )
-
-
-
-
-
-# ==========================================================
-# MAIN COMPOUND RISK ENGINE
-# ==========================================================
-
-
-
-def calculate_compound_risk(
-
-    sensor,
-
-    maintenance_status="NORMAL",
-
-    permit_status="VALID"
-
-):
-
-
-
-    total_score=0
-
-
-    explanations=[]
-
-
-
-
-    modules=[
-
-
+    modules = [
         analyze_gas(sensor),
-
-
         analyze_temperature(sensor),
-
-
-        analyze_maintenance(
-
-            maintenance_status
-
-        ),
-
-
-        analyze_permit(
-
-            permit_status
-
-        ),
-
-
-        analyze_worker_exposure(sensor),
-
-
+        analyze_maintenance(maintenance_status),
+        analyze_permit(permit_status),
+        analyze_worker(sensor),
+        analyze_zone(sensor),
+        analyze_equipment(equipment_status),
         analyze_shift()
-
-
     ]
 
+    for value, reason in modules:
+        score += value
+        reasons.extend(reason)
 
+    compound_patterns = detect_compound_patterns(sensor, maintenance_status, permit_status)
+    reasons.extend(compound_patterns)
 
+    score = min(score, 100)
+    level, prediction, probability = predict_incident(score)
 
-    for score,reasons in modules:
-
-
-        total_score += score
-
-
-        explanations.extend(
-
-            reasons
-
-        )
-
-
-
-
-
-    total_score=min(
-
-        total_score,
-
-        100
-
-    )
-
-
-
-
-    # Incident prediction window
-
-
-    if total_score>=80:
-
-
-        level="CRITICAL"
-
-        prediction="Incident probability high within 15-60 minutes"
-
-
-
-    elif total_score>=50:
-
-
-        level="WARNING"
-
-        prediction="Potential hazard developing"
-
-
-
-    else:
-
-
-        level="SAFE"
-
-        prediction="No immediate threat detected"
-
-
-
-
-
+    single_sensor = "SAFE"
+    if sensor.get("Gas_Level", 0) >= 80:
+        single_sensor = "WARNING"
 
     return {
-
-
-        "Compound_Risk_Score":
-
-        total_score,
-
-
-        "Risk_Level":
-
-        level,
-
-
-        "Prediction_Window":
-
-        prediction,
-
-
-        "AI_Reasoning":
-
-        explanations,
-
-
-        "Generated":
-
-        datetime.now().strftime(
-
-            "%H:%M:%S"
-
-        )
-
+        "Compound_Risk_Score": score,
+        "Risk_Level": level,
+        "Incident_Probability": f"{probability}%",
+        "Prediction_Window": prediction,
+        "Single_Sensor_Result": single_sensor,
+        "AI_Advantage": "Multi-factor AI detected hidden compound risk",
+        "AI_Reasoning": reasons,
+        "Generated_Time": datetime.now().strftime("%H:%M:%S")
     }
 
-
-
-
-
-
-# ==========================================================
-# TEST MODE
-# ==========================================================
-
-
-if __name__=="__main__":
-
-
-
-    test_sensor={
-
-
-        "Temperature":92,
-
-
-        "Gas_Level":140,
-
-
-        "Worker_Fatigue":90
-
-
+if __name__ == "__main__":
+    test_sensor = {
+        "Temperature": 92,
+        "Gas_Level": 140,
+        "Worker_Fatigue": 90,
+        "Zone": "Chemical Unit"
     }
 
-
-
-    result=calculate_compound_risk(
-
+    result = calculate_compound_risk(
         test_sensor,
-
-        "ACTIVE",
-
-        "CONFLICT"
-
+        maintenance_status="ACTIVE",
+        permit_status="CONFLICT",
+        equipment_status="FAILURE"
     )
-
-
+    
     print(result)

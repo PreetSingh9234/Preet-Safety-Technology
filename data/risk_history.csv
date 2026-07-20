@@ -1,0 +1,21 @@
+Time,Risk Score,Risk Level,Worker,Zone
+18:17:09,55,WARNING,Worker-003,Storage Area
+18:20:31,65,HIGH,Worker-001,Mining Area
+18:22:13,55,WARNING,Worker-003,Assembly Line
+18:23:52,45,WARNING,Worker-007,Power Plant
+18:23:59,85,CRITICAL,Worker-001,Storage Area
+18:24:00,75,HIGH,Worker-003,Storage Area
+18:24:01,100,CRITICAL,Worker-008,Assembly Line
+18:24:03,50,WARNING,Worker-007,Chemical Processing Unit
+18:24:04,55,WARNING,Worker-006,Mining Area
+18:24:05,75,HIGH,Worker-001,Assembly Line
+18:25:34,65,HIGH,Worker-002,Power Plant
+18:27:11,75,HIGH,Worker-005,Power Plant
+18:28:04,55,WARNING,Worker-005,Power Plant
+18:29:12,45,WARNING,Worker-008,Chemical Processing Unit
+18:30:40,65,HIGH,Worker-003,Power Plant
+18:39:21,65,HIGH,Worker-008,Assembly Line
+18:59:56,75,HIGH,Worker-008,Chemical Processing Unit
+19:09:55,65,HIGH,Worker-008,Power Plant
+19:16:53,65,HIGH,Worker-001,Storage Area
+19:36:15,45,WARNING,Worker-006,Mining Area

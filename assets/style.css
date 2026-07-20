@@ -1,14 +1,7 @@
-body{
-
-background:#050816;
-
+body {
+    background: #050816;
 }
 
-
-.glow{
-
-text-shadow:
-
-0 0 20px #00e5ff;
-
+.glow {
+    text-shadow: 0 0 20px #00e5ff;
 }
