@@ -19,3 +19,7 @@ Time,Risk Score,Risk Level,Worker,Zone
 19:09:55,65,HIGH,Worker-008,Power Plant
 19:16:53,65,HIGH,Worker-001,Storage Area
 19:36:15,45,WARNING,Worker-006,Mining Area
+20:06:39,90,CRITICAL,Worker-003,Storage Area
+20:42:13,55,WARNING,Worker-007,Steel Furnace Zone
+20:50:26,40,WARNING,Worker-004,Steel Furnace Zone
+20:52:33,40,WARNING,Worker-006,Assembly Line

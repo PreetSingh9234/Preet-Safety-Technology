@@ -1,7 +1,7 @@
 import streamlit as st
 
 def show_winner_layer():
-    st.divider()
+    st.markdown("<br>", unsafe_allow_html=True)
     st.header("🏆 AI Safety Winner Intelligence Layer")
 
     # Performance Metrics

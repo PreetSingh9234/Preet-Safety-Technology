@@ -803,16 +803,6 @@ summary = {
 st.json(summary)
 
 st.divider()
-st.markdown(
-    """
-    <center>
-    <h3>🛡️ Preet Safety Technology</h3>
-    <p>AI Powered Industrial Safety Intelligence Platform<br>Built for Safer Factories • Smarter Decisions • Zero Harm Future</p>
-    </center>
-    """,
-    unsafe_allow_html=True
-)
-
 st.divider()
 # 🏆 PHASE 5 - WINNER INTELLIGENCE LAYER
 show_winner_layer()
