@@ -1,121 +1,176 @@
 # 🛡️ Preet Safety AI
 ## AI-Powered Industrial Safety Intelligence Platform for Zero-Harm Operations
 
-<p align="center">
-AI Based Predictive Industrial Safety Monitoring System using Multi-Agent AI, IoT Intelligence, RAG, Computer Vision and Geospatial Analytics.
-</p>
-
+An AI-powered industrial safety intelligence platform that transforms traditional reactive safety systems into predictive, autonomous hazard prevention.
 ---
-
 # 🚨 Problem Statement
 
-Industrial accidents often occur not because safety data is unavailable, but because existing systems fail to connect multiple weak signals into one intelligent decision.
+Industrial accidents are rarely caused by a single failure. Most incidents occur because multiple small warning signals remain disconnected.
 
-Preet Safety AI solves this problem by creating a unified AI safety intelligence layer that combines:
+Existing industrial safety systems generate large amounts of data from:
 
-- IoT Sensor Data
-- SCADA-like Industrial Parameters
-- Worker Safety Information
-- Permit-to-Work Intelligence
-- CCTV Computer Vision
-- Historical Incident Knowledge
-- Regulatory Compliance Rules
+* IoT sensors
+* SCADA systems
+* CCTV cameras
+* Maintenance records
+* Permit-to-work systems
+* Worker monitoring systems
 
-The system detects compound risks before they become accidents.
+However, these systems often fail to combine this information into a single intelligent decision layer.
+
+### Example:
+
+```
+Gas Leakage
+        +
+Maintenance Activity
+        +
+Hot Work Permit
+        +
+Worker Presence
+
+        ↓
+
+Hidden Compound Risk
+```
+
+Preet Safety AI solves this gap by creating an intelligent safety layer that predicts dangerous situations before escalation.
 
 ---
 
 # 💡 Solution Overview
 
-Preet Safety AI is an autonomous industrial safety platform that predicts hazardous situations and recommends preventive actions.
+Preet Safety AI is an autonomous industrial safety intelligence platform that combines multiple AI agents to continuously monitor, analyze, and prevent workplace hazards.
 
-Instead of reacting after an incident:
+Unlike traditional systems:
 
-Traditional Safety:
-
-Preet Safety AI:
+| Traditional Safety         | Preet Safety AI                      |
+| -------------------------- | ------------------------------------ |
+| Reactive incident response | Predictive risk prevention           |
+| Single sensor alerts       | Multi-factor compound risk detection |
+| Manual safety monitoring   | Autonomous AI analysis               |
+| Delayed emergency response | Instant response orchestration       |
+| Data stored separately     | Unified intelligence layer           |
 
 ---
 
 # 🏗️ System Architecture
 
-             Industrial Data Sources
+```
+                 INDUSTRIAL DATA SOURCES
 
-    IoT Sensors        CCTV        Permits
-         |               |            |
-         --------------------------------
-                     |
-             AI Intelligence Layer
-                     |
-                     |
-         Emergency Response Orchestrator
-                     |
+        IoT Sensors        CCTV        Work Permits
+             |               |              |
+             |               |              |
+             └───────────────┼──────────────┘
+                             |
+                             ▼
+
+              🧠 AI INTELLIGENCE LAYER
+
+        ┌────────────────────────────────┐
+        │ Multi-Agent Safety Intelligence │
+        └────────────────────────────────┘
+
+              |        |        |
+
+              ▼        ▼        ▼
+
+
+       Digital Twin     Risk Engine     Emergency AI
+       Heatmap          Prediction      Orchestrator
+
+
+                             |
+                             ▼
+
+              🛡️ ZERO HARM DECISION SYSTEM
+```
 
 ---
 
 # 🤖 Multi-Agent AI Architecture
 
 ## 📡 IoT Sensor Agent
-Monitors:
 
-- Temperature
-- Gas Level
-- Humidity
-- Vibration
-- Noise
-- Worker Fatigue
+Continuously monitors:
 
-## 🧠 Compound Risk Agent
+* Temperature
+* Gas concentration
+* Humidity
+* Machine vibration
+* Noise exposure
+* Worker fatigue
 
-Detects hidden combinations:
+---
+
+## 🧠 Compound Risk Intelligence Agent
+
+Detects hidden relationships between multiple weak signals.
 
 Example:
 
-Gas Leakage
+```
+Gas Abnormality
 +
-Maintenance Activity
+Maintenance Operation
 +
 Hot Work Permit
 +
 Worker Exposure
 
-=
-HIGH INCIDENT RISK
+= HIGH INCIDENT POSSIBILITY
+```
+
+---
 
 ## 📄 Permit Intelligence Agent
 
 Analyzes:
 
-- Hot Work permits
-- Confined space operations
-- Hazard zone conflicts
+* Hot work permits
+* Confined space operations
+* Hazard zone conflicts
+* SIMOPS activities
 
-## 👁 Computer Vision Agent
+Prevents unsafe simultaneous operations.
 
-Detects:
+---
 
-- Missing PPE
-- Unsafe posture
-- Worker proximity to hazards
+## 👁️ Computer Vision Safety Agent
+
+AI vision monitoring:
+
+* Helmet detection
+* Safety vest detection
+* Safety shoe detection
+* Unsafe posture detection
+* Restricted zone entry detection
+
+---
 
 ## 📚 RAG Safety Intelligence Agent
 
-Uses:
+Retrieves intelligence from:
 
-- Historical incidents
-- OISD guidelines
-- Factory Act references
-- DGMS safety practices
+* Historical incident reports
+* OISD standards
+* Factory Act guidelines
+* DGMS safety practices
 
-## 🚨 Emergency Orchestrator
+Provides evidence-based recommendations.
 
-Automatically generates:
+---
 
-- Emergency alerts
-- Response timeline
-- Team dispatch
-- Incident report
-- Evidence preservation
+## 🚨 Emergency Response Orchestrator
+
+Automatically performs:
+
+* Safety alerts
+* Team notifications
+* Emergency timeline generation
+* Evidence preservation
+* Incident report creation
 
 ---
 
@@ -123,64 +178,71 @@ Automatically generates:
 
 ✅ Real-Time Industrial IoT Monitoring
 
-✅ Compound Risk Detection
+✅ Compound Risk Detection Engine
 
 ✅ AI Predictive Safety Analytics
 
 ✅ Factory Digital Twin
 
-✅ Geospatial Risk Intelligence
+✅ Geospatial Safety Heatmap
 
-✅ Permit Conflict Detection
+✅ Permit Conflict Intelligence
 
-✅ RAG Based Safety Intelligence
+✅ RAG-Based Safety Recommendations
 
-✅ Computer Vision Safety Monitoring
+✅ Computer Vision PPE Monitoring
 
-✅ Automated Emergency Response
+✅ Autonomous Emergency Response
 
 ✅ Compliance Audit Intelligence
 
 ---
 
-# 📊 AI Performance
+# 📊 AI Performance Metrics
 
-| Metric | Value |
-|---|---|
-| Risk Detection Accuracy | 97.7% |
-| Early Warning Lead Time | 45 Minutes |
-| False Negative Reduction | 82% |
-| Worker Protection Score | 96% |
-| Hazard Detection Speed | <5 seconds |
+| Metric                   | Performance |
+| ------------------------ | ----------- |
+| Risk Detection Accuracy  | 97.7%       |
+| Early Warning Lead Time  | 45 Minutes  |
+| False Negative Reduction | 82%         |
+| Worker Protection Score  | 96%         |
+| Hazard Detection Speed   | <5 Seconds  |
 
 ---
 
 # 🛠️ Technology Stack
 
-## AI / ML
-- Python
-- Scikit-Learn
-- Agentic AI Architecture
-- RAG Pipeline
+## Artificial Intelligence
 
-## Application
-- Streamlit
-- Plotly
-- Pandas
-- NumPy
+* Python
+* Scikit-Learn
+* Machine Learning Models
+* Agentic AI Architecture
+* RAG Pipeline
+
+## Application Layer
+
+* Streamlit
+* Plotly
+* Pandas
+* NumPy
 
 ## Safety Intelligence
-- IoT Simulation
-- Computer Vision
-- Knowledge Retrieval
-- Rule Based Compliance Engine
+
+* IoT Simulation
+* Computer Vision
+* Knowledge Retrieval
+* Compliance Rule Engine
+* Digital Twin Analytics
 
 ---
 
 # 📂 Project Structure
 
+```
 Preet-Safety-Technology/
 
+│
 ├── live_monitor.py
 ├── compound_risk_engine.py
 ├── emergency_orchestrator.py
@@ -191,40 +253,93 @@ Preet-Safety-Technology/
 ├── sensor_engine.py
 ├── geospatial_engine.py
 ├── compliance_agent.py
-├── requirements.txt
-└── model/
+│
+├── model/
+│   └── trained ML models
+│
+├── data/
+│   └── safety datasets
+│
+└── requirements.txt
+```
 
 ---
 
 # ▶️ Run Project
 
+Activate Virtual Environment
+```bash
+source venv/bin/activate
+``
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
+Run application:
 
-Run:
-
-
+```bash
 streamlit run live_monitor.py
+```
 
 ---
 
-# 🌍 Vision
+# 🎬 Demo Workflow
 
-Preet Safety AI aims to transform industrial safety from:
+1. Live industrial sensor simulation starts
 
+2. AI agents analyze safety conditions
+
+3. Compound risk engine detects hidden hazards
+
+4. Permit intelligence checks operational conflicts
+
+5. Digital Twin visualizes affected zones
+
+6. Emergency Orchestrator activates response
+
+7. AI generates incident report and recommendations
+
+---
+
+# 🌍 Industrial Impact
+
+Preet Safety AI enables industries to move from:
+
+```
 Reactive Safety
+        ↓
+Predictive Safety
+        ↓
+Autonomous Safety Intelligence
+```
 
-to
+Potential impact:
 
-Predictive Autonomous Safety Intelligence
-
-## Mission:
-
-# 🛡️ ZERO HARM INDUSTRIAL OPERATIONS
+* Faster emergency response
+* Reduced workplace incidents
+* Better compliance monitoring
+* Improved worker protection
 
 ---
 
-## Built for Industrial Intelligence / Worker Safety / Geospatial Safety Analytics Hackathon
+# 🏆 Hackathon Alignment
 
+This project addresses:
+
+✅ Industrial Intelligence
+✅ Worker Safety
+✅ Geospatial Safety Analytics
+✅ Multi-Agent AI Systems
+✅ RAG Intelligence
+✅ Computer Vision
+✅ IoT Safety Monitoring
+
+---
+
+# 🚀 Mission
+
+## 🛡️ ZERO HARM INDUSTRIAL OPERATIONS
+
+Building safer factories through intelligent prevention, not accident response.

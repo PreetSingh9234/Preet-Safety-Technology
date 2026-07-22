@@ -23,3 +23,8 @@ Time,Risk Score,Risk Level,Worker,Zone
 20:42:13,55,WARNING,Worker-007,Steel Furnace Zone
 20:50:26,40,WARNING,Worker-004,Steel Furnace Zone
 20:52:33,40,WARNING,Worker-006,Assembly Line
+10:07:27,80,HIGH,Worker-004,Mining Area
+10:19:04,50,WARNING,Worker-007,Steel Furnace Zone
+10:20:13,80,HIGH,Worker-004,Power Plant
+10:43:24,60,HIGH,Worker-003,Steel Furnace Zone
+11:25:07,40,WARNING,Worker-004,Mining Area
